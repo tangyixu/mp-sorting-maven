@@ -64,7 +64,7 @@ public class MergeSorter<T> implements Sorter<T> {
           values[values.length - 1] = left[left.length - 1];
           return;
         } //if
-        if (order.compare(left[n], right[index]) <= 0) {
+        if (this.order.compare(left[n], right[index]) <= 0) {
           values[n] = left[n];
         } //if
         else {
