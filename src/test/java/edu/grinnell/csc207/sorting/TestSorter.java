@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
  * Rather, you should subclass it and initialize stringSorter and
  * intSorter in a static @BeforeAll method.
  *
- * @author Your Name
+ * @author Tiffany
  * @uathor Samuel A. Rebelsky
  */
 public class TestSorter {
@@ -102,7 +102,7 @@ public class TestSorter {
     assertSorts(expected, original, stringSorter);
   } // orderedStringTest
 
-  /**
+    /**
    * Ensure that a randomly permuted version of a moderate-sized
    * array sorts correctly.
    */
@@ -120,4 +120,55 @@ public class TestSorter {
     ArrayUtils.permute(original);
     assertSorts(expected, original, intSorter);
   } // permutedIntegers
+
+  /**
+   * Ensure that an array of two similar strings ending with different chars
+   * can be sorted correctly.
+   */
+  @Test 
+  public void similarStringTest() { 
+    String[] original = { "foxtrot", "foxtroa"};
+    String[] expected = { "foxtroa", "foxtrot" };
+    assertSorts(expected, original, stringSorter);
+  } // similarStringTest
+
+  /**
+   * Ensure that an array of one string can be sorted correctly.
+   */
+  @Test 
+  public void oneStringTest() { 
+    String[] original = { "foxtrot"};
+    String[] expected = { "foxtrot"};
+    assertSorts(expected, original, stringSorter);
+  } // oneStringTest
+
+  /**
+   * Ensure that an empty array can be returned without any errors
+   */
+  @Test 
+  public void emptyTest() { 
+    String[] original = {};
+    String[] expected = {};
+    assertSorts(expected, original, stringSorter);
+  } // oneStringTest
+
+  /**
+   * Ensure that an array of duplicates of integers can be sorted correctly.
+   */
+  @Test 
+  public void duplicateIntegerTest() { 
+    Integer[] original = { 1, 1, 1, 2, 3, 3, 2, 2 };
+    Integer[] expected = { 1, 1, 1, 2, 2, 2, 3, 3};
+    assertSorts(expected, original, intSorter);
+  } // duplicateIntegerTest
+
+  /**
+   * Ensure that an array of one string can be sorted correctly.
+   */
+  @Test 
+  public void duplicateStringTest() { 
+    String[] original = { "abc", "bcd", "def", "def", "def", "abc", "abc", "def" };
+    String[] expected = { "abc", "abc", "abc", "bcd", "def", "def", "def", "def" };
+    assertSorts(expected, original, stringSorter);
+  } // duplicateStringTest
 } // class TestSorter
