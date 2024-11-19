@@ -1,6 +1,7 @@
 package edu.grinnell.csc207.sorting;
 
 import java.util.Comparator;
+import java.util.Arrays;
 
 /**
  * Something that sorts using merge sort.
@@ -55,6 +56,22 @@ public class MergeSorter<T> implements Sorter<T> {
    */
   @Override
   public void sort(T[] values) {
-    // STUB
+    T[] left = Arrays.copyOf(values, values.length/2);
+    T[] right = Arrays.copyOfRange(values, values.length/2, values.length);
+    int index = 0;
+    for(int n = 0; n < left.length; n++) {
+        if(index == right.length) {
+          values[values.length - 1] = left[left.length - 1];
+          return;
+        } //if
+        if (order.compare(left[n], right[index]) <= 0) {
+          values[n] = left[n];
+        } //if
+        else {
+          values[n] = right[index];
+          index++;
+        } //else 
+      } //for 
+      values[values.length - 1] = right[right.length - 1];      
   } // sort(T[])
 } // class MergeSorter
